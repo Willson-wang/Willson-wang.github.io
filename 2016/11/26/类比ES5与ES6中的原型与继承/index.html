@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="王侯将相，令有种乎！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Array's Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;原型与继承是我们在使用面向对象的语言时，需要经常用到的两种概念，如果我们想要深入的理解JavaScript，那么原型与继承，就是我们必须需要深入研究与理解的两个重要概念，所谓工欲善其事必先利其器，下面我把我学习与理解原型与继承的一些想法记录下来，希望能够对初入门的人有所帮助。   
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在学习一个东西之前，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类比ES5与ES6中的原型与继承">
+<meta property="og:url" content="http://yoursite.com/2016/11/26/类比ES5与ES6中的原型与继承/index.html">
 <meta property="og:site_name" content="Array's Blog">
-<meta property="og:description" content="王侯将相，令有种乎！">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;原型与继承是我们在使用面向对象的语言时，需要经常用到的两种概念，如果我们想要深入的理解JavaScript，那么原型与继承，就是我们必须需要深入研究与理解的两个重要概念，所谓工欲善其事必先利其器，下面我把我学习与理解原型与继承的一些想法记录下来，希望能够对初入门的人有所帮助。   
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在学习一个东西之前，">
+<meta property="og:updated_time" content="2016-11-26T15:12:00.513Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Array's Blog">
-<meta name="twitter:description" content="王侯将相，令有种乎！">
+<meta name="twitter:title" content="类比ES5与ES6中的原型与继承">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;原型与继承是我们在使用面向对象的语言时，需要经常用到的两种概念，如果我们想要深入的理解JavaScript，那么原型与继承，就是我们必须需要深入研究与理解的两个重要概念，所谓工欲善其事必先利其器，下面我把我学习与理解原型与继承的一些想法记录下来，希望能够对初入门的人有所帮助。   
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在学习一个东西之前，">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/26/类比ES5与ES6中的原型与继承/"/>
 
 
 
 
 
-  <title> Array's Blog </title>
+  <title> 类比ES5与ES6中的原型与继承 | Array's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,9 +151,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,9 +240,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -273,10 +275,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/26/类比ES5与ES6中的原型与继承/" itemprop="url">
-                  类比ES5与ES6中的原型与继承
-                </a>
+                类比ES5与ES6中的原型与继承
               
             
           </h1>
@@ -325,9 +324,7 @@
       
 
       
-        
-          
-            <p>&ensp;&ensp;&ensp;&ensp;<strong>原型与继承</strong>是我们在使用面向对象的语言时，需要经常用到的两种概念，如果我们想要深入的理解JavaScript，那么原型与继承，就是我们必须需要深入研究与理解的两个重要概念，所谓工欲善其事必先利其器，下面我把我学习与理解原型与继承的一些想法记录下来，希望能够对初入门的人有所帮助。   </p>
+        <p>&ensp;&ensp;&ensp;&ensp;<strong>原型与继承</strong>是我们在使用面向对象的语言时，需要经常用到的两种概念，如果我们想要深入的理解JavaScript，那么原型与继承，就是我们必须需要深入研究与理解的两个重要概念，所谓工欲善其事必先利其器，下面我把我学习与理解原型与继承的一些想法记录下来，希望能够对初入门的人有所帮助。   </p>
 <p>&ensp;&ensp;&ensp;&ensp;在学习一个东西之前，可以先花费一点点时间，想一下，一个东西出现的原因是什么，目的是为了什么，在翻阅了一些资料，在结合自己的一些想法，原型是之后才出现在JavaScript语言中的，目的是在使用构造函数创建实例时，既能让实例拥有构造函数内所有的属性和方法，又能够节能内存空间，这个时候就需要一个第三者来帮助保存这个相同的属性or方法，那么原型就应运而生了，有了原型之后，肯定要想办法把这些原型串起来，所有又有了原型链，有了原型链之后，原型链与原型链之间能不能建立联系所以在这个情况下，继承又应运而生，所以一切新事物的出现都是水到渠成的，不可或缺，下面来正式聊聊。</p>
 <p>&ensp;&ensp;&ensp;&ensp;<strong>ES5中的原型与继承</strong><br>先来讲两个概念：1、所有的函数都是Function函数的实例；2、所有的原型都是Obecjt函数的实例；其次使用构造函数原型、构造函数、对象实例、Function、Function原型Object、Object原型来阐述它们之间的关系。</p>
 <pre><code>//先定义一个普通构造函数  这里采用函数表达式的方式定义构造函数
@@ -463,16 +460,20 @@ console.log(stu);
 </ol>
 <p><strong>总结</strong>：JavaScript中的原型灵活，多变，但是只要抓住其本质，相信能够熟练掌握并运用，本文只是笔者在使用原型时的一些经验与总结，如果有错误的地方还望斧正，笔者相信技术是需要探讨与分享的，而出现不同观点时，再继续深究相信会有意想不到的收获，最后希望能与大家一起学习，一起进步；</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -481,279 +482,34 @@ console.log(stu);
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/第一篇博客/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Array">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/xiaohuangdi.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Array's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Array's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/20/第一篇博客/" rel="next" title="第一篇博客">
+                <i class="fa fa-chevron-left"></i> 第一篇博客
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/11/20/第一篇博客/" itemprop="url">
-                  第一篇博客
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T21:45:42+08:00">
-                2016-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/日记/" itemprop="url" rel="index">
-                    <span itemprop="name">日记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Hello world,Test!</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Array">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/xiaohuangdi.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Array's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Array's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/20/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T19:40:09+08:00">
-                2016-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -761,6 +517,10 @@ console.log(stu);
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -939,6 +699,10 @@ console.log(stu);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
