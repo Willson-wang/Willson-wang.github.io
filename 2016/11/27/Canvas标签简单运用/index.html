@@ -1,0 +1,902 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;canvas标签是h5中的重量级标签，该标签可以用于制作复杂or简单的图片，今天有时间尝试了一下，并做了一个小demo,写出来与大家分享；
+先使用canvas标签绘制了一些简单的案例如矩形，原型，线段等；
+//需要注意的一点是，canvas标签通过标签属性width与height设置的宽高
+与通过css样式设置的width，height是有区别的，建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canvas标签简单运用">
+<meta property="og:url" content="http://yoursite.com/2016/11/27/Canvas标签简单运用/index.html">
+<meta property="og:site_name" content="Array's Blog">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;canvas标签是h5中的重量级标签，该标签可以用于制作复杂or简单的图片，今天有时间尝试了一下，并做了一个小demo,写出来与大家分享；
+先使用canvas标签绘制了一些简单的案例如矩形，原型，线段等；
+//需要注意的一点是，canvas标签通过标签属性width与height设置的宽高
+与通过css样式设置的width，height是有区别的，建">
+<meta property="og:image" content="http://i.imgur.com/TFxAh8p.png">
+<meta property="og:updated_time" content="2016-11-27T13:21:32.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Canvas标签简单运用">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;canvas标签是h5中的重量级标签，该标签可以用于制作复杂or简单的图片，今天有时间尝试了一下，并做了一个小demo,写出来与大家分享；
+先使用canvas标签绘制了一些简单的案例如矩形，原型，线段等；
+//需要注意的一点是，canvas标签通过标签属性width与height设置的宽高
+与通过css样式设置的width，height是有区别的，建">
+<meta name="twitter:image" content="http://i.imgur.com/TFxAh8p.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/27/Canvas标签简单运用/"/>
+
+
+
+
+
+  <title> Canvas标签简单运用 | Array's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Array's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/27/Canvas标签简单运用/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Array">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/xiaohuangdi.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Array's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Array's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Canvas标签简单运用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-27T21:03:04+08:00">
+                2016-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&ensp;&ensp;&ensp;&ensp;canvas标签是h5中的重量级标签，该标签可以用于制作复杂or简单的图片，今天有时间尝试了一下，并做了一个小demo,写出来与大家分享；</p>
+<p>先使用canvas标签绘制了一些简单的案例如矩形，原型，线段等；</p>
+<pre><code>//需要注意的一点是，canvas标签通过标签属性width与height设置的宽高
+与通过css样式设置的width，height是有区别的，建议使用标签属性设置width与height
+
+//获取canvas标签
+var oCanvas =  document.getElementById(&quot;canv&quot;);
+//获取canvas对象下的一个子对象，用于绘制各种二维图形，所有的绘制图形的方法都属于该对象
+var ctx = oCanvas.getContext(&quot;2d&quot;);
+//绘制矩形
+ctx.fillStyle = &quot;red&quot;;
+ctx.fillRect(0,0,100,100);
+
+//画线段，绘制三角形
+//开始路径
+ctx.beginPath();
+//设置起点坐标
+ctx.moveTo(200,200);
+//设置三角形另外两个顶点
+ctx.lineTo(300,300);
+ctx.lineTo(200,300);
+//回到三角形的起点
+ctx.lineTo(200,200);
+//绘制
+ctx.stroke();
+//结束路径
+ctx.closePath();
+
+
+//空心画圆
+ctx.beginPath();
+//arc()方法中的第一个参数为X坐标，第二个参数为Y坐标，
+第三个参数为圆的半径，第四个参数为圆弧的起始点，第五个参数为圆弧的终止点
+，第六个参数为绘制圆的方向，false为顺时针，true为逆时针
+ctx.arc(500,200,100,Math.PI*2,false);
+ctx.stroke();
+ctx.closePath();
+
+//实心圆
+ctx.beginPath();
+ctx.arc(500,200,100,90,false);
+//fill()方法,用于设置图形是否填充的方法
+ctx.fill();
+ctx.closePath();
+</code></pre><p>下面是利用上面的一些方法来模拟制作了一个画板 效果图，如下图所示<br><img src="http://i.imgur.com/TFxAh8p.png" alt="">;</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;你画我猜&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    #box{
+        width: 600px;
+        height: 500px;
+        margin: 100px auto;
+        border: 1px solid black;
+    }
+
+    #box .control{
+        width: 100%;
+        height: 100px;
+    }
+
+    #box .control div{
+        height: 50px;
+        line-height: 50px;
+    }
+
+    #box .control .changeColor{
+        padding-left: 15px;
+    }
+
+    #box .control .changeColor input{
+        width: 30px;
+        height: 30px;
+        margin: 0 15px;
+        vertical-align: middle;
+    }
+
+    #box .control .changeColor input:first-of-type{
+        background-color: black;
+    }
+
+    #box .control .changeColor input:nth-of-type(2){
+        background-color: pink;
+    }
+
+    #box .control .changeColor input:nth-of-type(3){
+        background-color: red;
+    }
+
+    #box .control .changeColor input:nth-of-type(4){
+        background-color: orange;
+    }
+
+    #box .control .changeColor input:nth-of-type(5){
+        background-color: saddlebrown;
+    }
+
+    #box .control .changeColor input:nth-of-type(6){
+        background-color: blueviolet;
+    }
+
+    #box .control .clear {
+        height: 50px;
+    }
+
+    #box .control .clear input{
+        margin-left: 15px;
+        width: 100px;
+        height: 40px;
+        background-color: oldlace;
+    }
+
+    canvas{
+        background-color: gainsboro;
+    }
+
+
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;box&quot;&gt;
+    &lt;div class=&quot;control&quot;&gt;
+        &lt;div class=&quot;changeColor&quot; id=&quot;changeColor&quot;&gt;
+            选择画笔颜色：
+            &lt;input type=&quot;button&quot;  /&gt;
+            &lt;input type=&quot;button&quot; /&gt;
+            &lt;input type=&quot;button&quot;  /&gt;
+            &lt;input type=&quot;button&quot; /&gt;
+            &lt;input type=&quot;button&quot; /&gt;
+            &lt;input type=&quot;button&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;clear&quot;&gt;
+            &lt;input type=&quot;button&quot; value=&quot;清空画布内容&quot; id=&quot;clearBtn&quot;/&gt;
+            当前选中的颜色是：&lt;b style=&quot;font-size: 25px;&quot; id=&quot;show-color&quot;&gt;黑色&lt;/b&gt;
+            &lt;input type=&quot;button&quot; value=&quot;橡皮擦&quot; id=&quot;eraser&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;canvas width=&quot;600&quot; height=&quot;400&quot;&gt;
+        &lt;p&gt;浏览器不支持canvas&lt;/p&gt;
+    &lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    //获取canvas标签
+    var oCanvas = document.querySelector(&quot;canvas&quot;);
+    var ctx = oCanvas.getContext(&quot;2d&quot;);
+    //获取清空画布内容标签
+    var oBtn = document.querySelector(&quot;#clearBtn&quot;);
+    //获取包含颜色选择的父标签
+    var oChangeColor = document.querySelector(&quot;#changeColor&quot;);
+    //获取显示颜色的标签
+    var oB = document.querySelector(&quot;#show-color&quot;);
+    //获取橡皮擦标签
+    var oEraser = document.querySelector(&quot;#eraser&quot;);
+    //设置一个橡皮擦开启开关
+    var flag = true;
+
+
+    //为canvas标签添加鼠标按下事件
+    oCanvas.onmousedown = function (e){
+        var e = e || event;
+        var beginX = e.offsetX;
+        var beginY = e.offsetY;
+    //这种跟随效果要实现真正的跟随且不会出现断点的情况，最好的办法就是把移动过程中的每个坐标点都通过对象属性保存下来，
+需要注意的是在mousedown事件中保存的坐标，需要在事件调用函数之前，因为没有保存该属性时，是取不到值的；
+而在move事件中，要保存的旧的坐标一定要在事件函数之后，因为只有生成了此次的点，再把此次的坐标保存下来，下次调用就是拿的上次的点，这里注意down事件中保存属性的时候，
+要+一个值or-一个值，目的是在于绘制一个点，如果不进行加or减的话，就会画不出东西，
+而在move事件中，不能加原因是这里保存的是上一个点的坐标，如果我保存了值的话，
+势必导致移动过程中的部分坐标无法描绘出来出现断点现象；
+        this.oldPosition = {
+            X: beginX +1,
+            Y: beginY +1
+        }
+
+        //创建canvas对象，并设置起始路劲及起始点
+        if(flag){
+            picture(beginX,beginY);
+        }else{
+            clearFn(beginX,beginY);
+        }
+
+
+        //设置鼠标移动事件
+        oCanvas.onmousemove = function (e){
+            var e = e || event;
+            var beginX = e.offsetX;
+            var beginY = e.offsetY;
+            //oCanvas.onmousedown();
+            if(flag){
+                picture(beginX,beginY);
+            }else {
+                clearFn(beginX,beginY);
+            }
+
+            //保存上一个起始点的位置是保证，下一个点的结束点就是上一个点的起始点
+            this.oldPosition = {
+                X: beginX,
+                Y: beginY
+            }
+
+        }
+
+    }
+
+    oCanvas.onmouseup = function (){
+        this.onmousemove = null;
+    }
+
+    //画点功能
+    function picture(x,y){
+        //设置线段的宽度
+        ctx.lineWidth = 5;
+        //设线段的形状
+        ctx.lineCap = &quot;round&quot;;
+        ctx.beginPath();
+        //起始点的坐标
+        ctx.moveTo(x,y);
+        ctx.lineTo(oCanvas.oldPosition.X,oCanvas.oldPosition.Y);
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    //清空画布内容
+    oBtn.onclick = function (){
+        //清除画布的原理是当canvas标签的宽高有改变时，整个canvas标签就会重置；
+        ctx.clearRect(0,0,oCanvas.width,oCanvas.height);
+    }
+
+    //颜色选择功能
+    oChangeColor.onclick = function (e){
+        var e = e || event;
+        if(e.target.type == &quot;button&quot;){
+            ctx.strokeStyle = getComputedStyle(e.target,null)[&quot;background-color&quot;];
+            console.log(getComputedStyle(e.target,null)[&quot;background-color&quot;]);
+            //map数据可以通过get方法直接获取到某个key的value值；
+            oB.innerHTML = colorMap.get(getComputedStyle(e.target,null)[&quot;background-color&quot;]);
+            console.log(ctx.strokeStyle);
+            oB.style.color = ctx.strokeStyle;
+            flag = true;
+        }
+    }
+
+    //定义一个map数据类型用于保存颜色值及文字描述
+    var colorMap = new Map (
+        [
+            [&quot;rgb(0, 0, 0)&quot;,&quot;黑色&quot;],
+            [&quot;rgb(255, 192, 203)&quot;,&quot;粉红色&quot;],
+            [&quot;rgb(255, 0, 0)&quot;,&quot;红色&quot;],
+            [&quot;rgb(255, 165, 0)&quot;,&quot;橙色&quot;],
+            [&quot;rgb(139, 69, 19)&quot;,&quot;棕色&quot;],
+            [&quot;rgb(138, 43, 226)&quot;,&quot;蓝色&quot;]
+        ]
+    )
+
+    //橡皮擦功能，核心思想是1.保存canvas当前的画面，2、裁剪，3、清空当前画布，4、还原场景
+    function clearFn(x,y){
+        //保存当前的画面
+        ctx.save();
+        //设置开始路径
+        ctx.beginPath();
+        //设置裁剪大小及裁剪
+        ctx.arc(x,y,5,0,Math.PI*2,false);
+        ctx.clip();
+        //清空当前画布
+        ctx.clearRect(0,0,oCanvas.width,oCanvas.height);
+        //还原场景
+        ctx.restore();
+        ctx.closePath();
+    }
+
+    //为橡皮擦按钮添加点击功能
+    oEraser.onclick = function (){
+        flag = false;
+    }
+
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>总结：Canvas标签因其功能强大而著称，以后抽空还得继续深入学习，这次的分享就到这里，希望能够给大家有所启发；</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/26/类比ES5与ES6中的原型与继承/" rel="next" title="类比ES5与ES6中的原型与继承">
+                <i class="fa fa-chevron-left"></i> 类比ES5与ES6中的原型与继承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/xiaohuangdi.jpg"
+               alt="Array" />
+          <p class="site-author-name" itemprop="name">Array</p>
+          <p class="site-description motion-element" itemprop="description">王侯将相，令有种乎！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Array</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
